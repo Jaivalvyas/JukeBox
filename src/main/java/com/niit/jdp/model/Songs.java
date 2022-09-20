@@ -20,4 +20,36 @@ public class Songs {
         this.albumArtist = albumArtist;
         this.genre = genre;
     }
+
+    public int getSongId() {
+        return songId;
+    }
+
+    public void setSongId(int songId) {
+        this.songId = songId;
+    }
+
+    public String getSongName() {
+        return songName;
+    }
+
+    public void setSongName(String songName) {
+        this.songName = songName;
+    }
+
+    public String getAlbumArtist() {
+        return albumArtist;
+    }
+
+    public void setAlbumArtist(String albumArtist) {
+        this.albumArtist = albumArtist;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
 }

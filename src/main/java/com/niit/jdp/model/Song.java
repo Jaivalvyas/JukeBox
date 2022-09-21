@@ -8,35 +8,35 @@ package com.niit.jdp.model;
 import java.util.Objects;
 
 public class Song {
-    private int songId;
-    private String songName;
+    private int id;
+    private String name;
     private String albumArtist;
     private String genre;
 
     public Song() {
     }
 
-    public Song(int songId, String songName, String albumArtist, String genre) {
-        this.songId = songId;
-        this.songName = songName;
+    public Song(int id, String name, String albumArtist, String genre) {
+        this.id = id;
+        this.name = name;
         this.albumArtist = albumArtist;
         this.genre = genre;
     }
 
-    public int getSongId() {
-        return songId;
+    public int getId() {
+        return id;
     }
 
-    public void setSongId(int songId) {
-        this.songId = songId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getSongName() {
-        return songName;
+    public String getName() {
+        return name;
     }
 
-    public void setSongName(String songName) {
-        this.songName = songName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAlbumArtist() {
@@ -60,19 +60,19 @@ public class Song {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Song song = (Song) o;
-        return songId == song.songId && Objects.equals(songName, song.songName) && Objects.equals(albumArtist, song.albumArtist) && Objects.equals(genre, song.genre);
+        return id == song.id && Objects.equals(name, song.name) && Objects.equals(albumArtist, song.albumArtist) && Objects.equals(genre, song.genre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(songId, songName, albumArtist, genre);
+        return Objects.hash(id, name, albumArtist, genre);
     }
 
     @Override
     public String toString() {
-        return "Songs{" +
-                "songId=" + songId +
-                ", songName='" + songName + '\'' +
+        return "Song{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", albumArtist='" + albumArtist + '\'' +
                 ", genre='" + genre + '\'' +
                 '}';

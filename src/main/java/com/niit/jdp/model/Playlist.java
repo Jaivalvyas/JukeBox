@@ -5,21 +5,22 @@
  */
 package com.niit.jdp.model;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Playlist {
     private String playlistName;
 
     private int playlistId;
-    private Songs songs;
+    private List<Song> songList;
 
     public Playlist() {
     }
 
-    public Playlist(String playlistName, int playlistId, Songs songs) {
+    public Playlist(String playlistName, int playlistId, List<Song> songList) {
         this.playlistName = playlistName;
         this.playlistId = playlistId;
-        this.songs = songs;
+        this.songList = songList;
     }
 
     public String getPlaylistName() {
@@ -38,12 +39,12 @@ public class Playlist {
         this.playlistId = playlistId;
     }
 
-    public Songs getSongs() {
-        return songs;
+    public List<Song> getSongList() {
+        return songList;
     }
 
-    public void setSongs(Songs songs) {
-        this.songs = songs;
+    public void setSongList(List<Song> songList) {
+        this.songList = songList;
     }
 
     @Override
@@ -51,12 +52,12 @@ public class Playlist {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Playlist playlist = (Playlist) o;
-        return playlistId == playlist.playlistId && Objects.equals(playlistName, playlist.playlistName) && Objects.equals(songs, playlist.songs);
+        return playlistId == playlist.playlistId && Objects.equals(playlistName, playlist.playlistName) && Objects.equals(songList, playlist.songList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playlistName, playlistId, songs);
+        return Objects.hash(playlistName, playlistId, songList);
     }
 
     @Override
@@ -64,7 +65,7 @@ public class Playlist {
         return "Playlist{" +
                 "playlistName='" + playlistName + '\'' +
                 ", playlistId=" + playlistId +
-                ", songs=" + songs +
+                ", songList=" + songList +
                 '}';
     }
 }

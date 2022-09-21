@@ -7,16 +7,16 @@ package com.niit.jdp.model;
 
 import java.util.Objects;
 
-public class Songs {
+public class Song {
     private int songId;
     private String songName;
     private String albumArtist;
     private String genre;
 
-    public Songs() {
+    public Song() {
     }
 
-    public Songs(int songId, String songName, String albumArtist, String genre) {
+    public Song(int songId, String songName, String albumArtist, String genre) {
         this.songId = songId;
         this.songName = songName;
         this.albumArtist = albumArtist;
@@ -59,8 +59,8 @@ public class Songs {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Songs songs = (Songs) o;
-        return songId == songs.songId && Objects.equals(songName, songs.songName) && Objects.equals(albumArtist, songs.albumArtist) && Objects.equals(genre, songs.genre);
+        Song song = (Song) o;
+        return songId == song.songId && Objects.equals(songName, song.songName) && Objects.equals(albumArtist, song.albumArtist) && Objects.equals(genre, song.genre);
     }
 
     @Override

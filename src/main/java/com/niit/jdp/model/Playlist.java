@@ -9,13 +9,16 @@ import java.util.Objects;
 
 public class Playlist {
     private String playlistName;
+
+    private int playlistId;
     private Songs songs;
 
     public Playlist() {
     }
 
-    public Playlist(String playlistName, Songs songs) {
+    public Playlist(String playlistName, int playlistId, Songs songs) {
         this.playlistName = playlistName;
+        this.playlistId = playlistId;
         this.songs = songs;
     }
 
@@ -25,6 +28,14 @@ public class Playlist {
 
     public void setPlaylistName(String playlistName) {
         this.playlistName = playlistName;
+    }
+
+    public int getPlaylistId() {
+        return playlistId;
+    }
+
+    public void setPlaylistId(int playlistId) {
+        this.playlistId = playlistId;
     }
 
     public Songs getSongs() {
@@ -40,18 +51,19 @@ public class Playlist {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Playlist playlist = (Playlist) o;
-        return Objects.equals(playlistName, playlist.playlistName) && Objects.equals(songs, playlist.songs);
+        return playlistId == playlist.playlistId && Objects.equals(playlistName, playlist.playlistName) && Objects.equals(songs, playlist.songs);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(playlistName, songs);
+        return Objects.hash(playlistName, playlistId, songs);
     }
 
     @Override
     public String toString() {
         return "Playlist{" +
                 "playlistName='" + playlistName + '\'' +
+                ", playlistId=" + playlistId +
                 ", songs=" + songs +
                 '}';
     }

@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseService {
-    private static final String URL = "jdbc:mysql://localhost:3306";
+    private static final String URL = "jdbc:mysql://localhost:3306/jukebox";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "Admin@123";
     private Connection connection;

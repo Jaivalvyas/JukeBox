@@ -1,6 +1,7 @@
 package com.niit.jdp.repository;
 
 import com.niit.jdp.model.Playlist;
+import com.niit.jdp.model.Song;
 import com.niit.jdp.service.DatabaseService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 class PlaylistRepositoryTest {
@@ -28,6 +30,17 @@ class PlaylistRepositoryTest {
     void tearDown() {
         playlistRepository = null;
         playlist = null;
+    }
+
+    @Test
+    void addSongs() throws SQLException, ClassNotFoundException {
+        databaseService.connect();
+        Connection connection = databaseService.getConnection();
+        Song song = new Song(0, "test-playlist", "test", "test", "test-playlist");
+        List<Song> songList = new ArrayList<>();
+        songList.add(song);
+        Playlist playlist1 = new Playlist(0, "test", songList);
+        Assertions.assertTrue(playlistRepository.addSongs(connection, playlist1));
     }
 
     @Test

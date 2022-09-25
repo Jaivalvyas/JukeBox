@@ -25,6 +25,7 @@ public class PlaylistService {
             System.out.println("2. View all playlist details");
             System.out.println("3. View playlist by id");
             System.out.println("4. Play song");
+            System.out.println("5. Delete playlist");
             System.out.println("============================================");
 
             Scanner scanner = new Scanner(System.in);
@@ -87,6 +88,17 @@ public class PlaylistService {
                         playSongService.play(s);
                         break;
 
+                    case 5:
+                        System.out.println("Enter playlist id you want to delete");
+                        int deleteId = scanner.nextInt();
+
+                        boolean songDelete = playlistRepository.deleteById(connection, deleteId);
+                        if (songDelete) {
+                            System.out.println("Song deleted succesfully");
+                        } else {
+                            System.out.println("Invalid id");
+                        }
+                        break;
                     default:
                         System.err.println("Invalid choice");
                 }
@@ -94,10 +106,10 @@ public class PlaylistService {
             } catch (ClassNotFoundException | SQLException exception) {
                 System.err.println("Could not connect to the database!");
                 exception.printStackTrace();
-                choice = 5;
+                choice = 6;
             }
 
-        } while (choice != 5);
+        } while (choice != 6);
         return new ArrayList<>();
     }
 }

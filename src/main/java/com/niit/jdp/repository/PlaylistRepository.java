@@ -129,6 +129,12 @@ public class PlaylistRepository implements Repository<Playlist> {
 
     @Override
     public boolean deleteById(Connection connection, int id) throws SQLException {
-        return false;
+        String deleteQuery = "DELETE FROM `jukebox`.`playlist` WHERE (`id` = ?);";
+        int numberOfRowsAffected;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
+            preparedStatement.setInt(1, id);
+            numberOfRowsAffected = preparedStatement.executeUpdate();
+        }
+        return numberOfRowsAffected > 0;
     }
 }

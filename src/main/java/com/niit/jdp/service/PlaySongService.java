@@ -8,10 +8,12 @@ package com.niit.jdp.service;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class PlaySongService {
     public void play(String songPath) {
         // 2. a file object that contains our song
+        Scanner sc = new Scanner(System.in);
         File songFile = new File(songPath);
         try {
             // 3. an object of the AudioInputStream class
@@ -24,6 +26,26 @@ public class PlaySongService {
             clip.loop(Clip.LOOP_CONTINUOUSLY);
             // 7. start the sound file
             clip.start();
+
+            long clippause = 0;
+            System.out.println("Select option");
+            System.out.println("1. Play in loop");
+            System.out.println("2. Stop song");
+
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    // Play song in loop
+                    System.out.println("Enter no. of times you want to play this song in loop");
+                    int index = sc.nextInt();
+                    clip.loop(index);
+                    break;
+                case 2:
+                    clippause = clip.getMicrosecondPosition();
+                    clip.stop();
+                    System.out.println("Song stopped");
+                    break;
+            }
             // 8. pause the current thread for the time the song is being played
             long songDurationInMilliseconds = clip.getMicrosecondLength() / 1000L;
             Thread.sleep(songDurationInMilliseconds);

@@ -58,14 +58,6 @@ class SongRepositoryTest {
     }
 
     @Test
-    void getSongPath() {
-    }
-
-    @Test
-    void getListByOrder() {
-    }
-
-    @Test
     void deleteById() throws SQLException, ClassNotFoundException {
         databaseService.connect();
         Connection connection = databaseService.getConnection();

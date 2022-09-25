@@ -48,16 +48,12 @@ class PlaylistRepositoryTest {
         Assertions.assertEquals(expectedOutput, actualOutput);
     }
 
-    @Test
-    void getPlaylistByIdFailure() throws SQLException, ClassNotFoundException {
-        databaseService.connect();
-        Connection connection1 = databaseService.getConnection();
-        Playlist expectedOutput = playlistRepository.getSongById(connection1, playlist.getPlaylistId());
-        boolean actualOutput = playlistRepository.deleteById(connection1, playlist.getPlaylistId());
-        Assertions.assertNotEquals(expectedOutput, actualOutput);
-    }
 
     @Test
-    void deleteById() {
+    void deleteById() throws SQLException, ClassNotFoundException {
+        databaseService.connect();
+        Connection connection = databaseService.getConnection();
+        boolean output = playlistRepository.deleteById(connection, 10);
+        Assertions.assertTrue(output);
     }
 }

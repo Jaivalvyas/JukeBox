@@ -105,6 +105,7 @@ public class CatalogService {
                             System.out.println("Invalid id");
                         }
                         break;
+
                     default:
                         System.err.println("Invalid option");
                 }

@@ -65,7 +65,6 @@ public class SongRepository implements Repository<Song> {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                // fetch the values of the current row from the result set
 
                 int songId = resultSet.getInt("id");
                 String name = resultSet.getString("name");
@@ -73,7 +72,6 @@ public class SongRepository implements Repository<Song> {
                 String genre = resultSet.getString("genre");
                 String songPath = resultSet.getString("song_path");
 
-                // create a student object using the values fetched from the result set
                 song = new Song(id, name, albumArtist, genre, songPath);
             }
         }
@@ -90,9 +88,9 @@ public class SongRepository implements Repository<Song> {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                // fetch the values of the current row from the result set
+
                 String songPath = resultSet.getString("song_path");
-                // create a student object using the values fetched from the result set
+
                 song = new Song(songPath);
             }
         } catch (SQLException e) {
@@ -104,13 +102,13 @@ public class SongRepository implements Repository<Song> {
     public List<Song> getListByOrder(Connection connection) throws SQLException {
 
         List<Song> songList = new ArrayList<>();
-        // create a SQL query to retrieve all the rows from the catalog table
+
         String readQuery = "SELECT * FROM `jukebox`.`catalog` ORDER BY `name` ASC;";
 
-        // create a statement object
+
         try (Statement statement = connection.createStatement()) {
 
-            // execute the query
+
             ResultSet songResultSet = statement.executeQuery(readQuery);
 
             // iterate over the result set and create a list of song objects

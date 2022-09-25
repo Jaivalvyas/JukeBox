@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface Repository<T> {
-    boolean add(Connection connection, T object) throws SQLException;
+    boolean addSongs(Connection connection, T object) throws SQLException;
 
     List<T> getAll(Connection connection) throws SQLException;
 

@@ -13,14 +13,21 @@ public class Song {
     private String albumArtist;
     private String genre;
 
+    private String songPath;
+
     public Song() {
     }
 
-    public Song(int id, String name, String albumArtist, String genre) {
+    public Song(String songPath) {
+        this.songPath = songPath;
+    }
+
+    public Song(int id, String name, String albumArtist, String genre, String songPath) {
         this.id = id;
         this.name = name;
         this.albumArtist = albumArtist;
         this.genre = genre;
+        this.songPath = songPath;
     }
 
     public int getId() {
@@ -55,6 +62,14 @@ public class Song {
         this.genre = genre;
     }
 
+    public String getSongPath() {
+        return songPath;
+    }
+
+    public void setSongPath(String songPath) {
+        this.songPath = songPath;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,11 +85,6 @@ public class Song {
 
     @Override
     public String toString() {
-        return "Song{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", albumArtist='" + albumArtist + '\'' +
-                ", genre='" + genre + '\'' +
-                '}';
+        return "Song{" + "id=" + id + ", name='" + name + '\'' + ", albumArtist='" + albumArtist + '\'' + ", genre='" + genre + '\'' + '}';
     }
 }

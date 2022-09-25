@@ -17,6 +17,10 @@ public class Playlist {
     public Playlist() {
     }
 
+    public Playlist(List<Song> songList) {
+        this.songList = songList;
+    }
+
     public Playlist(int playlistId, String playlistName, List<Song> songList) {
         this.playlistName = playlistName;
         this.playlistId = playlistId;
@@ -62,10 +66,6 @@ public class Playlist {
 
     @Override
     public String toString() {
-        return "Playlist{" +
-                "playlistName='" + playlistName + '\'' +
-                ", playlistId=" + playlistId +
-                ", songList=" + songList +
-                '}';
+        return "Playlist{" + "playlistName='" + playlistName + '\'' + ", playlistId=" + playlistId + ", songList=" + songList + '}';
     }
 }

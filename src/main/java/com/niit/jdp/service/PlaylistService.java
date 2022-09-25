@@ -17,15 +17,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PlaylistService {
-    PlaylistRepository playlistRepository = new PlaylistRepository();
-
     public List<Playlist> displayPlaylist() {
         int choice = -1;
         do {
             System.out.println("============================================");
             System.out.println("1. Add playlist");
             System.out.println("2. View all playlist details");
-            System.out.println("3. Exit");
+            System.out.println("3. View playlist by id");
+            System.out.println("4. Play song");
             System.out.println("============================================");
 
             Scanner scanner = new Scanner(System.in);
@@ -42,22 +41,24 @@ public class PlaylistService {
 
                 switch (choice) {
                     case 1:
-                        Song song = new Song();
+
                         System.out.println("Add a new playlist");
                         System.out.println("Enter the name: ");
                         String name = scanner.next();
 
                         System.out.println("Enter song id you want to add in the playlist: ");
-                        int songId = scanner.nextInt();
+                        String songId = scanner.next();
 
-                        SongRepository songRepository = new SongRepository();
-                        Song song1 = songRepository.getSongById(connection, songId);
-
-                        List<Song> songList = new ArrayList<>();
-                        songList.add(song1);
-
-                        Playlist playlist = new Playlist(0, name, (List<Song>) songList.get(song1.getId()));
-                        playlistRepository.add(connection, playlist);
+                        songId = songId.replaceAll("[\\[\\]]", "");
+                        String[] catalogId = songId.split(",");
+                        List<Song> playlistArrayList = new ArrayList<>();
+                        for (String songName : catalogId) {
+                            int index = Integer.parseInt(songName);
+                            SongRepository songRepository = new SongRepository();
+                            Song song = songRepository.getSongById(connection, index);
+                            playlistArrayList.add(song);
+                        }
+                        Playlist playlist1 = new Playlist(0, name, playlistArrayList);
                         break;
 
                     case 2:
@@ -66,8 +67,26 @@ public class PlaylistService {
                         break;
 
                     case 3:
-                        System.out.println("Exit");
+                        System.out.println("View playlist by id");
+                        System.out.println("Enter id: ");
+                        int id = scanner.nextInt();
+                        playlist1 = playlistRepository.getSongById(connection, id);
+
+                        if (playlist1.getPlaylistId() == 0) {
+                            System.err.println("No playlist found");
+                        } else {
+                            System.out.println(playlist1);
+                        }
+
                         break;
+                    case 4:
+                        System.out.println("Enter song to be played");
+                        int inputId = scanner.nextInt();
+                        String s = String.valueOf(playlistRepository.getSongPath(connection, inputId));
+                        PlaySongService playSongService = new PlaySongService();
+                        playSongService.play(s);
+                        break;
+
                     default:
                         System.err.println("Invalid choice");
                 }
@@ -75,13 +94,11 @@ public class PlaylistService {
             } catch (ClassNotFoundException | SQLException exception) {
                 System.err.println("Could not connect to the database!");
                 exception.printStackTrace();
-                choice = 4;
+                choice = 5;
             }
 
-        } while (choice != 4);
+        } while (choice != 5);
         return new ArrayList<>();
     }
-
-
 }
 

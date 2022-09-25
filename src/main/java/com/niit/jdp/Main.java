@@ -8,35 +8,34 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, InvalidException {
         DatabaseService databaseService = new DatabaseService();
         databaseService.connect();
         databaseService.getConnection();
         databaseService.printConnectionStatus();
-
-//        try(Connection connection = databaseService.getConnection()) {
-//            PlaylistRepository playlistRepository = new PlaylistRepository();
-//            playlistRepository.createTable(connection);
-//        }
-
-        // PlaySongService playSongService = new PlaySongService();
-        //playSongService.play("src/main/resources/songs/akatsuki-theme.wav");
-
+        Scanner sc = new Scanner(System.in);
 
         System.out.println("--------------------------------------");
         System.out.println("1. Select to see catalog");
         System.out.println("2. Select to check playlist options");
         System.out.println("--------------------------------------");
         System.out.println("Enter your choice: ");
-        int choice = sc.nextInt();
-        switch (choice) {
-            case 1:
-                CatalogService catalogService = new CatalogService();
-                catalogService.displayCatalog();
-            case 2:
-                PlaylistService playlistService = new PlaylistService();
-                playlistService.displayPlaylist();
+        try {
+            int choice = sc.nextInt();
+            if (choice > 2) throw new InvalidException("Invalid option");
+            switch (choice) {
+                case 1:
+                    CatalogService catalogService = new CatalogService();
+                    catalogService.displayCatalog();
+                    break;
+                case 2:
+                    PlaylistService playlistService = new PlaylistService();
+                    playlistService.displayPlaylist();
+                    break;
+            }
+        } catch (InvalidException e) {
+            System.out.println(e);
+            System.out.println("Please enter correct option");
         }
     }
 }

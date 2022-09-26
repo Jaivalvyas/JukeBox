@@ -65,8 +65,6 @@ public class SongRepository implements Repository<Song> {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-
-                int songId = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String albumArtist = resultSet.getString("album_artist");
                 String genre = resultSet.getString("genre");

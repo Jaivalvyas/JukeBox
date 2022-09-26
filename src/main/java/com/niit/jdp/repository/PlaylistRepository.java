@@ -46,7 +46,7 @@ public class PlaylistRepository implements Repository<Playlist> {
             while (songResultSet.next()) {
                 // fetch the values of the current row from the result set
                 int id = songResultSet.getInt("id");
-                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                //ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
                 String name = songResultSet.getString("name");
                 String catalog = songResultSet.getString("catalog_id");
                 playlist.setPlaylistId(id);
@@ -72,7 +72,6 @@ public class PlaylistRepository implements Repository<Playlist> {
     @Override
     public Playlist getSongById(Connection connection, int id) throws SQLException {
         Playlist playlist = new Playlist();
-        List<Playlist> songInPlaylist = new ArrayList<>();
         String searchQuery = "SELECT * FROM `jukebox`.`playlist` WHERE(`id` = ?);";
 
         Playlist playlist1 = null;

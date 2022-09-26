@@ -36,10 +36,10 @@ class PlaylistRepositoryTest {
     void addSongs() throws SQLException, ClassNotFoundException {
         databaseService.connect();
         Connection connection = databaseService.getConnection();
-        Song song = new Song(0, "test-playlist", "test", "test", "test-playlist");
+        Song song = new Song(0, "test", "test", "test", "test-playlist");
         List<Song> songList = new ArrayList<>();
         songList.add(song);
-        Playlist playlist1 = new Playlist(0, "test", songList);
+        Playlist playlist1 = new Playlist(0, "testPlaylist", songList);
         Assertions.assertTrue(playlistRepository.addSongs(connection, playlist1));
     }
 

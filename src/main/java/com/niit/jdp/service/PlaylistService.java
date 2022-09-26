@@ -34,6 +34,7 @@ public class PlaylistService {
             choice = scanner.nextInt();
 
             DatabaseService databaseService = new DatabaseService();
+            Playlist playlist = new Playlist();
 
             try {
                 databaseService.connect();
@@ -50,7 +51,6 @@ public class PlaylistService {
                         System.out.println("Enter song id you want to add in the playlist: ");
                         String songId = scanner.next();
 
-                        songId = songId.replaceAll("[\\[\\]]", "");
                         String[] catalogId = songId.split(",");
                         List<Song> playlistArrayList = new ArrayList<>();
                         for (String songName : catalogId) {
@@ -59,7 +59,8 @@ public class PlaylistService {
                             Song song = songRepository.getSongById(connection, index);
                             playlistArrayList.add(song);
                         }
-                        Playlist playlist1 = new Playlist(0, name, playlistArrayList);
+                        playlist = new Playlist(0, name, playlistArrayList);
+                        playlistRepository.addSongs(connection, playlist);
                         break;
 
                     case 2:
@@ -71,12 +72,12 @@ public class PlaylistService {
                         System.out.println("View playlist by id");
                         System.out.println("Enter id: ");
                         int id = scanner.nextInt();
-                        playlist1 = playlistRepository.getSongById(connection, id);
+                        playlist = playlistRepository.getSongById(connection, id);
 
-                        if (playlist1.getPlaylistId() == 0) {
+                        if (playlist.getPlaylistId() == 0) {
                             System.err.println("No playlist found");
                         } else {
-                            System.out.println(playlist1);
+                            System.out.println(playlist);
                         }
 
                         break;

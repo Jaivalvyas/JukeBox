@@ -34,9 +34,6 @@ public class Song {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -50,25 +47,15 @@ public class Song {
         return albumArtist;
     }
 
-    public void setAlbumArtist(String albumArtist) {
-        this.albumArtist = albumArtist;
-    }
-
     public String getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
 
     public String getSongPath() {
         return songPath;
     }
 
-    public void setSongPath(String songPath) {
-        this.songPath = songPath;
-    }
 
     @Override
     public boolean equals(Object o) {

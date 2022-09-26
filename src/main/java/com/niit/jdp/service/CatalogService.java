@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 public class CatalogService {
     public List<Song> displayCatalog() throws SQLException, ClassNotFoundException {
         int choice = -1;
@@ -105,7 +106,6 @@ public class CatalogService {
                             System.out.println("Invalid id");
                         }
                         break;
-
                     default:
                         System.err.println("Invalid option");
                 }

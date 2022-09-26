@@ -17,10 +17,6 @@ public class Playlist {
     public Playlist() {
     }
 
-    public Playlist(List<Song> songList) {
-        this.songList = songList;
-    }
-
     public Playlist(int playlistId, String playlistName, List<Song> songList) {
         this.playlistName = playlistName;
         this.playlistId = playlistId;
@@ -45,10 +41,6 @@ public class Playlist {
 
     public List<Song> getSongList() {
         return songList;
-    }
-
-    public void setSongList(List<Song> songList) {
-        this.songList = songList;
     }
 
     @Override

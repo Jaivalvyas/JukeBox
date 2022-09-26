@@ -141,4 +141,25 @@ public class SongRepository implements Repository<Song> {
         return numberOfRowsAffected > 0;
     }
 
+    public Song getSongByArtist(Connection connection, String artist) throws SQLException {
+        String searchQuery = "SELECT * FROM `jukebox`.`catalog` WHERE `album_artist` LIKE ?;";
+
+        Song song = new Song();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(searchQuery)) {
+            preparedStatement.setString(1, artist);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String genre = resultSet.getString("genre");
+                String songPath = resultSet.getString("song_path");
+
+                song = new Song(id, name, artist, genre, songPath);
+            }
+        }
+        return song;
+    }
+
 }

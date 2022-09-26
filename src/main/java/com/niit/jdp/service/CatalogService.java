@@ -25,6 +25,7 @@ public class CatalogService {
             System.out.println("4. Display song details by id");
             System.out.println("5. Display song details by alphabetical order of song name");
             System.out.println("6. Delete song");
+            System.out.println("7. Get song details by artist");
             System.out.println("============================================");
 
             Scanner scanner = new Scanner(System.in);
@@ -106,6 +107,17 @@ public class CatalogService {
                         }
                         break;
 
+                    case 7:
+                        System.out.println("Enter artist name: ");
+                        String artistName = scanner.next();
+                        Song song2 = songRepository.getSongByArtist(connection, artistName);
+                        if (song2.getId() == 0) {
+                            System.err.println("No song found");
+                        } else {
+                            System.out.println(song2);
+                        }
+                        break;
+
                     default:
                         System.err.println("Invalid option");
                 }
@@ -113,9 +125,9 @@ public class CatalogService {
             } catch (ClassNotFoundException | SQLException exception) {
                 System.err.println("Could not connect to the database!");
                 exception.printStackTrace();
-                choice = 7;
+                choice = 8;
             }
-        } while (choice != 7);
+        } while (choice != 8);
         return new ArrayList<>();
     }
 }

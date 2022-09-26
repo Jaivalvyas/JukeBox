@@ -66,7 +66,7 @@ class PlaylistRepositoryTest {
     void deleteById() throws SQLException, ClassNotFoundException {
         databaseService.connect();
         Connection connection = databaseService.getConnection();
-        boolean output = playlistRepository.deleteById(connection, 20);
+        boolean output = playlistRepository.deleteById(connection, 19);
         Assertions.assertTrue(output);
     }
 }

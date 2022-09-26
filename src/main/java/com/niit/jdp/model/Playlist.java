@@ -14,7 +14,15 @@ public class Playlist {
     private int playlistId;
     private List<Song> songList;
 
+    private String songIds;
+
     public Playlist() {
+    }
+
+    public Playlist(int playlistId, String playlistName, String songIds) {
+        this.playlistName = playlistName;
+        this.playlistId = playlistId;
+        this.songIds = songIds;
     }
 
     public Playlist(int playlistId, String playlistName, List<Song> songList) {
@@ -39,8 +47,8 @@ public class Playlist {
         this.playlistId = playlistId;
     }
 
-    public List<Song> getSongList() {
-        return songList;
+    public String getSongIds() {
+        return songIds;
     }
 
     @Override

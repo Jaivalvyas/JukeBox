@@ -6,7 +6,6 @@
 package com.niit.jdp.service;
 
 import com.niit.jdp.model.Playlist;
-import com.niit.jdp.model.Song;
 import com.niit.jdp.repository.PlaylistRepository;
 import com.niit.jdp.repository.SongRepository;
 
@@ -43,23 +42,13 @@ public class PlaylistService {
 
                 switch (choice) {
                     case 1:
-
                         System.out.println("Add a new playlist");
                         System.out.println("Enter the name: ");
                         String name = scanner.next();
-
                         System.out.println("Enter song id you want to add in the playlist: ");
-                        String songId = scanner.next();
+                        String ids = scanner.next();
 
-                        String[] catalogId = songId.split(",");
-                        List<Song> playlistArrayList = new ArrayList<>();
-                        for (String songName : catalogId) {
-                            int index = Integer.parseInt(songName);
-                            SongRepository songRepository = new SongRepository();
-                            Song song = songRepository.getSongById(connection, index);
-                            playlistArrayList.add(song);
-                        }
-                        playlist = new Playlist(0, name, playlistArrayList);
+                        playlist = new Playlist(0, name, ids);
                         playlistRepository.addSongs(connection, playlist);
                         break;
 
@@ -79,12 +68,13 @@ public class PlaylistService {
                         } else {
                             System.out.println(playlist);
                         }
-
                         break;
+
                     case 4:
                         System.out.println("Enter song to be played");
                         int inputId = scanner.nextInt();
-                        String s = String.valueOf(playlistRepository.getSongPath(connection, inputId));
+                        SongRepository songRepository = new SongRepository();
+                        String s = String.valueOf(songRepository.getSongPath(connection, inputId));
                         PlaySongService playSongService = new PlaySongService();
                         playSongService.play(s);
                         break;

@@ -22,7 +22,7 @@ public class PlaylistRepository implements Repository<Playlist> {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertCarQuery)) {
             preparedStatement.setString(1, playlist.getPlaylistName());
-            preparedStatement.setString(2, String.valueOf(playlist.getSongList().get(song.getId()).getId()));
+            preparedStatement.setString(2, playlist.getSongIds());
             numberOfRowsAffected = preparedStatement.executeUpdate();
         }
         return numberOfRowsAffected > 0;
@@ -102,27 +102,6 @@ public class PlaylistRepository implements Repository<Playlist> {
         }
         return playlist1;
 
-    }
-
-    public String getSongPath(Connection connection, int id) {
-        String seacrhPath = "SELECT `song_path` FROM `jukebox`.`catalog` WHERE (`id`=?);";
-
-        Song song = new Song();
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(seacrhPath)) {
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                // fetch the values of the current row from the result set
-                String songPath = resultSet.getString("song_path");
-                // create a student object using the values fetched from the result set
-                song = new Song(songPath);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return song.getSongPath();
     }
 
     @Override

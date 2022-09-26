@@ -95,7 +95,6 @@ public class CatalogService {
                         break;
 
                     case 6:
-
                         System.out.println("Enter song id you want to delete: ");
                         int deleteId = scanner.nextInt();
 
@@ -106,6 +105,7 @@ public class CatalogService {
                             System.out.println("Invalid id");
                         }
                         break;
+
                     default:
                         System.err.println("Invalid option");
                 }

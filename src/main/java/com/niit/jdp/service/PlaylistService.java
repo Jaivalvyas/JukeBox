@@ -34,7 +34,7 @@ public class PlaylistService {
             choice = scanner.nextInt();
 
             DatabaseService databaseService = new DatabaseService();
-            Playlist playlist = new Playlist();
+            Playlist playlist;
 
             try {
                 databaseService.connect();

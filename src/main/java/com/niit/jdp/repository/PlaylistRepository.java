@@ -33,7 +33,7 @@ public class PlaylistRepository implements Repository<Playlist> {
 
         List<Playlist> songInPlaylist = new ArrayList<>();
         Playlist playlist = new Playlist();
-        // create a SQL query to retrieve all the rows from the catalog table
+        // create a SQL query to retrieve all the rows from the playlist table
         String readQuery = "SELECT * FROM `jukebox`.`playlist`;";
 
         // create a statement object
@@ -65,7 +65,7 @@ public class PlaylistRepository implements Repository<Playlist> {
                 songInPlaylist.add(playlist1);
             }
         }
-        //return the list of songs
+        //return the playlist of songs
         return songInPlaylist;
     }
 
@@ -100,7 +100,6 @@ public class PlaylistRepository implements Repository<Playlist> {
                 // songInPlaylist.add(playlist1);
             }
         }
-        //return the list of songs
         return playlist1;
 
     }

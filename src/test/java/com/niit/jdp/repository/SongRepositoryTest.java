@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
 class SongRepositoryTest {
 
@@ -43,9 +42,10 @@ class SongRepositoryTest {
     void getAll() throws SQLException, ClassNotFoundException {
         databaseService.connect();
         Connection connection = databaseService.getConnection();
-        List<Song> output = songRepository.getAll(connection);
-        List<Song> expectedOutput = songRepository.getAll(connection);
-        Assertions.assertEquals(expectedOutput, output);
+        int output = songRepository.getAll(connection).size();
+//        List<Song> output = songRepository.getAll(connection);
+//        List<Song> expectedOutput = songRepository.getAll(connection);
+        Assertions.assertEquals(12, output);
     }
 
     @Test

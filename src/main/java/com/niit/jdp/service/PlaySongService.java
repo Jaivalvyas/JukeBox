@@ -30,8 +30,9 @@ public class PlaySongService {
             int flag = 0;
             long clippause = 0;
 
-            while (flag == 0) {
 
+            int choice;
+            do {
                 System.out.println("Select option");
                 System.out.println("1. Play in loop");
                 System.out.println("2. Pause the song");
@@ -39,7 +40,7 @@ public class PlaySongService {
                 System.out.println("4. Restart the song");
                 System.out.println("5. Stop");
 
-                int choice = sc.nextInt();
+                choice = sc.nextInt();
                 switch (choice) {
                     case 1:
                         // Play song in loop
@@ -72,7 +73,8 @@ public class PlaySongService {
                     default:
                         System.out.println("Invalid option");
                 }
-            }
+            } while (choice != 6);
+
             // 8. pause the current thread for the time the song is being played
             long songDurationInMilliseconds = clip.getMicrosecondLength() / 1000L;
             Thread.sleep(songDurationInMilliseconds);
